@@ -1,0 +1,40 @@
+{% extends "my_app/base.html" %}
+{% load static %}
+
+{% block title %}
+Add Student
+{% endblock title %}
+
+
+{% block form %}
+
+<style>
+    form{
+        margin-top: 21px;
+
+    }
+    input{
+        margin-top: 20px;
+    }
+    .errorlist{
+        color: red;
+        list-style: none;
+    }
+</style>
+
+<div class="form">
+    <h2>{{val_type}}-Validation</h2>
+    <form action="" method="post" novalidate>
+        {% csrf_token %} <!----- csrf token to protect cross site forgery requests ---->
+        {{form.non_field_errors}}
+        <!-- using for loop to iterate over elements--->
+        {% for field in  form %}
+          {{field.label_tag}}  <!---- form field label----->
+          {{field}}           <!---- firld input----->
+          {{field.errors}} <br> <!--  field errors------->
+
+        {% endfor %}
+        <input type="submit" value='Register'>
+    </form>
+</div>
+{% endblock form %}
